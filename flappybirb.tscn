@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw1l08sj30s3y"]
+
+[ext_resource type="Script" uid="uid://bbl2f80du11id" path="res://game_manager.gd" id="1_8p54m"]
+[ext_resource type="Script" uid="uid://b72t1kwarsv23" path="res://spawner.gd" id="1_nrmeg"]
+[ext_resource type="PackedScene" uid="uid://cqoxjcxk788ax" path="res://scenes/birb.tscn" id="2_0ys3h"]
+[ext_resource type="Script" uid="uid://ysduap5upv02" path="res://death_zone.gd" id="4_vlxsv"]
+[ext_resource type="Script" uid="uid://bu40cnvrjylcm" path="res://try_again_button.gd" id="5_5ywhv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8p54m"]
+size = Vector2(1152.5, 78)
+
+[node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="." groups=["GameManager"]]
+script = ExtResource("1_8p54m")
+
+[node name="spawnpoint" type="Node2D" parent="."]
+position = Vector2(982, 302)
+script = ExtResource("1_nrmeg")
+
+[node name="birb" parent="." instance=ExtResource("2_0ys3h")]
+unique_name_in_owner = true
+position = Vector2(412, 283)
+
+[node name="Pipes" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1340, 327)
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 51.0
+offset_top = 41.0
+offset_right = 167.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 80
+text = "0"
+
+[node name="DeathZone" type="Area2D" parent="."]
+script = ExtResource("4_vlxsv")
+
+[node name="DeathZoneCollider" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(576.75, 687)
+shape = SubResource("RectangleShape2D_8p54m")
+
+[node name="gameOverOverlay" type="Node2D" parent="."]
+
+[node name="GameOver" type="Label" parent="gameOverOverlay"]
+unique_name_in_owner = true
+visible = false
+offset_left = 375.0
+offset_top = 283.0
+offset_right = 843.0
+offset_bottom = 393.0
+theme_override_font_sizes/font_size = 80
+text = "GAME OVER"
+
+[node name="TryAgainButton" type="Button" parent="gameOverOverlay"]
+unique_name_in_owner = true
+visible = false
+offset_left = 403.0
+offset_top = 458.0
+offset_right = 777.0
+offset_bottom = 543.0
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "Try Again?"
+script = ExtResource("5_5ywhv")
+
+[connection signal="body_entered" from="DeathZone" to="DeathZone" method="_on_body_entered"]
+[connection signal="pressed" from="gameOverOverlay/TryAgainButton" to="gameOverOverlay/TryAgainButton" method="_on_pressed"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsh6bro7bgb1m"]
+
+[ext_resource type="Script" uid="uid://v7q0m6wk2hu5" path="res://scenes/pipes.gd" id="1_3ahhd"]
+[ext_resource type="Texture2D" uid="uid://c6gf66fswxvtn" path="res://Assets/unitytut-pipe.png" id="1_r1kwc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ahhd"]
+size = Vector2(518.059, 1213.74)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prsvi"]
+size = Vector2(440.349, 2127.74)
+
+[node name="pipes" type="Node2D"]
+scale = Vector2(0.27024, 0.27024)
+script = ExtResource("1_3ahhd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-230, -2781, -235, -754, -272, -740, -272, -620, 262, -620, 266, -735, 220, -735, 226, -2769)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, -1700)
+texture = ExtResource("1_r1kwc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, 1700)
+rotation = -3.14159
+texture = ExtResource("1_r1kwc")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-266.43, 606.869, 259.029, 610.569, 266.43, 736.384, 236.827, 736.384, 233, 2725, -229, 2717, -237, 735, -262.73, 736.384)
+
+[node name="Area2D2" type="Area2D" parent="Area2D"]
+
+[node name="ScoreCollider" type="CollisionShape2D" parent="Area2D/Area2D2"]
+position = Vector2(3.70042, -3.70048)
+shape = SubResource("RectangleShape2D_3ahhd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+position = Vector2(-1.85021, -1681.84)
+shape = SubResource("RectangleShape2D_prsvi")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D2"]
+position = Vector2(0, 1691.09)
+shape = SubResource("RectangleShape2D_prsvi")
+
+[connection signal="body_entered" from="Area2D/Area2D2" to="." method="_on_area_2d_2_body_entered"]

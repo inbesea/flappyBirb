@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqoxjcxk788ax"]
+
+[ext_resource type="Texture2D" uid="uid://6u0gnlxfvy3k" path="res://Assets/unitytut-birdbody.png" id="1_buorm"]
+[ext_resource type="Script" uid="uid://b4fykxnxkmnjh" path="res://scenes/character_body_2d.gd" id="1_ewtqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s8u3n"]
+radius = 35.0571
+
+[node name="Node2D" type="Node2D"]
+
+[node name="birdBody" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_ewtqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="birdBody"]
+scale = Vector2(0.168161, 0.168161)
+texture = ExtResource("1_buorm")
+
+[node name="Area2D" type="Area2D" parent="birdBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="birdBody/Area2D"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_s8u3n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="birdBody"]
+position = Vector2(-1, 8)
+shape = SubResource("CircleShape2D_s8u3n")
