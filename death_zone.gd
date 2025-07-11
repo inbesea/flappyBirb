@@ -19,7 +19,7 @@ func gameOver():
 
 
 func _on_body_entered(body: Node2D) -> void:
-	birb.get_node("%birdBody").game_over()
+	birb.game_over()
 	game_over.show()
 	try_again_button.show()
 	try_again_button.disabled = false

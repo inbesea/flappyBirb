@@ -18,7 +18,7 @@ script = ExtResource("1_8p54m")
 position = Vector2(982, 302)
 script = ExtResource("1_nrmeg")
 
-[node name="birb" parent="." instance=ExtResource("2_0ys3h")]
+[node name="birb" parent="." groups=["player"] instance=ExtResource("2_0ys3h")]
 unique_name_in_owner = true
 position = Vector2(412, 283)
 

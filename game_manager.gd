@@ -9,3 +9,9 @@ func add_score():
 
 func _ready() -> void:
 	add_to_group("GameManager")
+
+func game_over():
+	%birb.game_over()
+	%GameOver.show()
+	%TryAgainButton.show()
+	%TryAgainButton.disabled = false
